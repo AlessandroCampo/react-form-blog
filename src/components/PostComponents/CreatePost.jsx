@@ -52,7 +52,7 @@ export default ({ user, setPostList, notifyError }) => {
                 repeat: 6,
                 yoyo: true,
                 onComplete: () => {
-                    gsap.set(wrapper, { x: 0 });
+                    gsap.set('.wrapper', { x: 0 });
                 }
             });
             notifyError('Scrivi qualcosa, coglione')

@@ -3,7 +3,7 @@ import CreatePost from "./components/PostComponents/CreatePost"
 import Post from "./components/PostComponents/Post";
 
 const app = () => {
-  const [postList, setPostList] = useState(['random element']);
+  const [postList, setPostList] = useState([]);
   const user = {
     username: 'Aleks'
   }
@@ -13,6 +13,7 @@ const app = () => {
       <div className="home-container">
         <CreatePost
           user={user}
+          setPostList={setPostList}
         />
         <div className="posts-container">
           {
@@ -20,6 +21,8 @@ const app = () => {
               return <Post
                 user={user}
                 key={p.id || `post-${i}`}
+                post={p}
+
               />
             })
           }

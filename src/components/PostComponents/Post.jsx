@@ -3,8 +3,9 @@ import Avatar from '@mui/material/Avatar';
 import { FaRegComment, FaRegHeart, FaRegShareSquare } from "react-icons/fa";
 import { FaRetweet } from "react-icons/fa6";
 import './post.css';
+import { formatTimestamp } from "../../utils";
 
-export default ({ user }) => {
+export default ({ user, post }) => {
 
     return (
         <div className="wrapper">
@@ -20,16 +21,16 @@ export default ({ user }) => {
                             {user?.username}
                         </span>
                         <span>
-                            Yesterday
+                            {formatTimestamp(post?.createdAt)}
                         </span>
                     </div>
                 </div>
             </div>
             <p className="px-6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus minus error laudantium reprehenderit, eum voluptates quos blanditiis soluta eveniet debitis repellat quo ut mollitia perspiciatis tempore fugiat, explicabo distinctio pariatur incidunt itaque necessitatibus quae asperiores voluptatibus esse? Reprehenderit maiores minima sint delectus dolorum quos aliquam quibusdam vero dignissimos. Magni quo aliquid reprehenderit? Vel sunt ex, adipisci iste laborum eos reiciendis atque quod? Magni iusto error explicabo ratione libero reiciendis, eum molestiae recusandae? Neque earum similique iure? Adipisci est provident tenetur ullam alias enim neque impedit harum eos eaque. Expedita, tempore placeat.
+                {post?.content}
             </p>
             {
-
+                post.image &&
                 <figure
                     className="w-full h-[150px]"
                 >
@@ -47,7 +48,7 @@ export default ({ user }) => {
                             className="icon-common"
                         />
                         <span className="counter">
-                            3
+                            {post?.likes.length || 0}
                         </span>
                     </div>
                     <div className="iconandcounter">
@@ -55,7 +56,7 @@ export default ({ user }) => {
                             className="icon-common"
                         />
                         <span className="counter">
-                            3
+                            {post?.comments.length || 0}
                         </span>
                     </div>
                     <div className="iconandcounter">
@@ -63,7 +64,7 @@ export default ({ user }) => {
                             className="icon-common"
                         />
                         <span className="counter">
-                            3
+                            {post?.comments.length || 0}
                         </span>
                     </div>
                 </div>

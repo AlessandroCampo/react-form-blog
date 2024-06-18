@@ -5,7 +5,7 @@ import { IoMdImages } from "react-icons/io";
 
 import './post.css';
 
-export default ({ user }) => {
+export default ({ user, setPostList }) => {
     const [postContent, setPostContent] = useState('');
     const [postMedia, setPostMedia] = useState(undefined);
     const [imagePreview, setImagePreview] = useState('');
@@ -25,6 +25,21 @@ export default ({ user }) => {
             };
             reader.readAsDataURL(file);
         }
+    }
+
+    const createPost = () => {
+        const newPost = {
+            id: new Date().toISOString(),
+            author: user,
+            content: postContent,
+            createdAt: new Date().toISOString(),
+            image: imagePreview || undefined,
+            comments: [],
+            likes: [],
+            shares: []
+        };
+        setPostList(oldPostList => [...oldPostList, newPost]);
+        setPostContent('');
     }
 
     return (
@@ -74,7 +89,7 @@ export default ({ user }) => {
                     className="hidden"
                     accept=".jpg, .png, .jpeg"
                 />
-                <button>Publish</button>
+                <button onClick={createPost}>Publish</button>
             </div>
         </div>
     )

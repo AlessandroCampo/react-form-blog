@@ -1,9 +1,9 @@
+import CreatePost from "./components/PostComponents/CreatePost"
+
 const app = () => {
   return (
     <>
-      <h2>
-        App
-      </h2>
+      <CreatePost />
     </>
   )
 }

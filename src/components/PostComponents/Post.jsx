@@ -1,11 +1,27 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Avatar from '@mui/material/Avatar';
-import { FaRegComment, FaRegHeart, FaRegShareSquare } from "react-icons/fa";
-import { FaRetweet } from "react-icons/fa6";
+import { FaRegComment, FaRegHeart, FaRetweet } from "react-icons/fa";
 import './post.css';
 import { formatTimestamp } from "../../utils";
+import CustomizedMenus from "../../Dropdown";
 
-export default ({ user, post }) => {
+export default ({ user, post, setPostList }) => {
+
+    const [editing, setEditing] = useState(false);
+    const newContent = useRef('');
+
+
+
+    const editPost = () => {
+        setPostList(currList => currList.map(p => {
+            if (p.id === post.id) {
+                return { ...p, content: newContent.current.value }
+            }
+            return { ...p }
+        }));
+        setEditing(false);
+    }
+
 
     return (
         <div className="wrapper">
@@ -15,6 +31,7 @@ export default ({ user, post }) => {
                         sx={{ bgcolor: '#DAA520', color: 'gray', width: 48, height: 48 }}
                         alt={user?.username}
                         src="/static/images/avatar/1.jpg"
+
                     />
                     <div className="authors-info flex flex-col text-sm">
                         <span className="font-bold">
@@ -25,20 +42,30 @@ export default ({ user, post }) => {
                         </span>
                     </div>
                 </div>
+                <CustomizedMenus setPostList={setPostList} setEditing={setEditing} post={post} />
             </div>
-            <p className="px-6">
-                {post?.content}
-            </p>
+            <div className="px-6">
+                <textarea readOnly={!editing}
+                    className={`${editing ? 'cursor-text border-2 border-white' : 'cursor-default border-0'}`}
+                    defaultValue={post?.content}
+                    ref={newContent}
+                >
+
+                </textarea>
+
+            </div>
             {
                 post.image &&
                 <figure
                     className="w-full h-[150px]"
                 >
                     <img
-                        alt="post_preview"
+                        alt="post_image"
                         className="preview"
+                        src={post.image}
                     />
                 </figure>
+
 
             }
             <div className="lower">
@@ -68,6 +95,13 @@ export default ({ user, post }) => {
                         </span>
                     </div>
                 </div>
+                {
+                    editing &&
+                    <button onClick={editPost}>
+                        Done
+                    </button>
+                }
+
             </div>
         </div>
     )

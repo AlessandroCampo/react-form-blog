@@ -22,6 +22,7 @@ const app = () => {
                 user={user}
                 key={p.id || `post-${i}`}
                 post={p}
+                setPostList={setPostList}
 
               />
             })

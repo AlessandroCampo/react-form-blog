@@ -1,4 +1,7 @@
 import { useState } from "react";
+import Avatar from '@mui/material/Avatar';
+import { IoMdImages } from "react-icons/io";
+import './post.css';
 
 export default () => {
     const [postContent, setPostContent] = useState('');
@@ -23,25 +26,54 @@ export default () => {
     }
 
     return (
-        <>
-            <textarea
-                value={postContent}
-                onChange={(e) => { updatePostContent(e) }}
-            >
-            </textarea>
+        <div className="wrapper">
+            <div className="upper">
+                <Avatar
+                    sx={{ bgcolor: '#DAA520', color: 'gray' }}
+                    alt="Remy Sharp"
+                    src="/static/images/avatar/1.jpg"
+
+                />
+                <textarea
+                    value={postContent}
+                    placeholder="What's on your mind?"
+                    className="h-[100px]"
+                    onChange={(e) => { updatePostContent(e) }}
+                >
+                </textarea>
+            </div>
             {
                 postMedia &&
-                <img
-                    src={imagePreview}
-                    alt="post_preview"
-                    className="preview"
-                />
-            }
+                <figure
+                    className="w-full h-[150px]"
+                >
+                    <img
+                        src={imagePreview}
+                        alt="post_preview"
+                        className="preview"
+                    />
+                </figure>
 
-            <input
-                type="file"
-                onChange={(e) => { handleFileUpload(e) }}
-            />
-        </>
+            }
+            <div className="lower">
+                <label
+                    htmlFor="postPic"
+
+                >
+                    <IoMdImages
+                        className="icon-common"
+                    />
+                </label>
+
+                <input
+                    type="file"
+                    id="postPic"
+                    onChange={(e) => { handleFileUpload(e) }}
+                    className="hidden"
+                    accept=".jpg, .png, .jpeg"
+                />
+                <button>Publish</button>
+            </div>
+        </div>
     )
 };

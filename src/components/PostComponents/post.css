@@ -1,0 +1,15 @@
+.wrapper {
+    @apply flex flex-col w-[350px] gap-6 bg-input py-6 rounded-xl min-h-[220px] justify-between
+}
+
+.wrapper .upper {
+    @apply flex items-start justify-between px-6 h-full
+}
+
+.wrapper .lower {
+    @apply flex justify-between px-6
+}
+
+.preview {
+    @apply w-full h-full object-cover
+}

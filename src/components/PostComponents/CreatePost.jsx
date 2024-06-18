@@ -1,9 +1,11 @@
 import { useState } from "react";
 import Avatar from '@mui/material/Avatar';
 import { IoMdImages } from "react-icons/io";
+
+
 import './post.css';
 
-export default () => {
+export default ({ user }) => {
     const [postContent, setPostContent] = useState('');
     const [postMedia, setPostMedia] = useState(undefined);
     const [imagePreview, setImagePreview] = useState('');
@@ -29,8 +31,8 @@ export default () => {
         <div className="wrapper">
             <div className="upper">
                 <Avatar
-                    sx={{ bgcolor: '#DAA520', color: 'gray' }}
-                    alt="Remy Sharp"
+                    sx={{ bgcolor: '#DAA520', color: 'gray', width: 48, height: 48 }}
+                    alt={user?.username}
                     src="/static/images/avatar/1.jpg"
 
                 />

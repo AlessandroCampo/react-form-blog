@@ -11,9 +11,17 @@ input, textarea {
 }
 
 .icon-common {
-    @apply text-theme text-3xl cursor-pointer hover:text-theme-dark hover:scale-105
+    @apply text-theme text-2xl cursor-pointer hover:text-theme-dark hover:scale-105
 }
 
 body {
     @apply bg-[#121212]
+}
+
+.home-container {
+    @apply w-1/2 mx-auto flex justify-center py-12 flex-col items-center
+}
+
+.posts-container {
+    @apply flex flex-col gap-3 mt-24
 }
